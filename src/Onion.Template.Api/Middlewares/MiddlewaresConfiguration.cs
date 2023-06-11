@@ -4,6 +4,7 @@ public static class MiddlewaresConfiguration
 {
     public static IApplicationBuilder ConfigureMiddlewares(this IApplicationBuilder builder)
     {
+        builder.UseExceptionHandler("/error");
         builder.UseHttpsRedirection();
         builder.UseAuthorization();
         return builder;

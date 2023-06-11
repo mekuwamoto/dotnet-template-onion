@@ -12,7 +12,7 @@ public static class MiddlewaresConfiguration
     public static IApplicationBuilder UseSwaggerServices(this IApplicationBuilder builder)
     {
         builder.UseSwagger();
-
+        builder.UseSwaggerUI();
         return builder;
     }
 }

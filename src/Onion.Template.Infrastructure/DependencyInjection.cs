@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Onion.Template.Application.Commom.Interfaces.Authentication;
+using Onion.Template.Infrastructure.Authentication;
+using Onion.Template.Infrastructure.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, ConfigurationManager config)
     {
+        services.Configure<JwtSettings>(config.GetSection(JwtSettings.Section));
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         return services;
     }
 }

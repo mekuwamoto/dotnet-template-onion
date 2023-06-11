@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Onion.Template.Application\Onion.Template.Application.csproj" />
     <ProjectReference Include="..\Onion.Template.Domain\Onion.Template.Domain.csproj" />
   </ItemGroup>
 

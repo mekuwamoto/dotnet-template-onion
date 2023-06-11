@@ -14,8 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Onion.Template.Domain\Onion.Template.Domain.csproj" />
-    <ProjectReference Include="..\Onion.Template.Infrastructure\Onion.Template.Infrastructure.csproj" />
-    <ProjectReference Include="..\Onion.Template.Persistence\Onion.Template.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

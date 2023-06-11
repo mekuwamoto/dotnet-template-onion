@@ -16,7 +16,6 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, ConfigurationManager config)
     {
         services.Configure<JwtSettings>(config.GetSection(JwtSettings.Section));
-        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         return services;
     }
 }

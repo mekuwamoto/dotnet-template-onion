@@ -1,4 +1,6 @@
-﻿using Onion.Template.Application.Commom.Interfaces.Authentication;
+﻿using Onion.Template.Application.Commom.Attributes;
+using Onion.Template.Application.Commom.Enums;
+using Onion.Template.Application.Commom.Interfaces.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Services.Authentication;
 
+[Dependency(DI.Transient)]
 internal class AuthenticationService : IAuthenticationService
 {
     private readonly IJwtTokenGenerator _jwt;

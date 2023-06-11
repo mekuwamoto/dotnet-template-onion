@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Onion.Template.Application.Commom.Attributes;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
 using Onion.Template.Application.Services.Authentication;
 using System;
@@ -17,7 +18,6 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services, ConfigurationManager config)
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
         return services;
     }
 }

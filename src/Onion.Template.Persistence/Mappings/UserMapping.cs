@@ -17,13 +17,13 @@ public class UserMapping : IEntityTypeConfiguration<User>
             .Property(p => p.FirstName)
             .HasColumnName("DS_FIRST_NAME");
         builder
-            .Property(p => p.FirstName)
+            .Property(p => p.LastName)
             .HasColumnName("DS_LAST_NAME");
         builder
             .Property(p => p.Email)
             .HasColumnName("DS_EMAIL");
         builder
-            .Property(p => p.Email)
+            .Property(p => p.Password)
             .HasColumnName("DS_PWD");
     }
 }

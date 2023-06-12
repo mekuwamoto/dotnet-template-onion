@@ -25,5 +25,9 @@ public class UserMapping : IEntityTypeConfiguration<User>
         builder
             .Property(p => p.Password)
             .HasColumnName("DS_PWD");
+        builder
+            .HasIndex(p => p.Email)
+            .IsUnique()
+            ;
     }
 }

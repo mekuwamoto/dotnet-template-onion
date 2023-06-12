@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Commom.Interfaces.Repositories;
 
-public interface IUserRepository
+public interface IUserRepository : IRepository<User>
 {
-    Task<List<User>> GetAllUsers();
 }

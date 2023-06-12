@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Onion.Template.Application.User.Commands.Register;
+namespace Onion.Template.Application.Users.Commands.Register;
 
 public class RegisterCommand : IRequest<string>
 {

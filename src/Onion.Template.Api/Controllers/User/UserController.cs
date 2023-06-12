@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Onion.Template.Api.Controllers.Commom;
-using Onion.Template.Application.User.Commands.Register;
+using Onion.Template.Application.Users.Commands.Register;
 
 namespace Onion.Template.Api.Controllers.User;
 

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
+using Onion.Template.Application.Users.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Users.Commands.Register;
 
-public class RegisterCommand : IRequest<string>
+public struct RegisterCommand : IRequest<string>
 {
+    public RegisterCommand(RegisterUserRequest user) => User = user;
+    public RegisterUserRequest User { get; set; }
 }
 
 public class RegisterHandler : IRequestHandler<RegisterCommand, string>
@@ -21,9 +24,9 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, string>
         _authService = authService;
     }
 
-    public async Task<string> Handle(RegisterCommand request, CancellationToken cancellationToken)
+    public async Task<string> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
-        var token = _authService.Register("Marcelo", "Eiji", "email@email.com");
+        var token = _authService.Register("firstName", "lastName", "password", "email");
         return token;
     }
 }

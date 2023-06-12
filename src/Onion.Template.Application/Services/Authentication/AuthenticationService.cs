@@ -19,11 +19,11 @@ internal class AuthenticationService : IAuthenticationService
         _jwt = jwt;
     }
 
-    public string Register(string firstName, string lastName, string email)
+    public string Register(string firstName, string lastName, string password, string email)
     {
-        //Create jwt
         Guid userId = new Guid();
         string token = _jwt.GenerateToken(userId, firstName, lastName);
         return token;
+        throw new NotImplementedException();
     }
 }

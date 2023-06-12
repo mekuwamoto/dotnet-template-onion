@@ -1,8 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Onion.Template.Application.Commom.Attributes;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
+using Onion.Template.Application.Commom.Interfaces.Validators;
 using Onion.Template.Application.Services.Authentication;
+using Onion.Template.Application.Users.Requests;
+using Onion.Template.Application.Users.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +24,8 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services, ConfigurationManager config)
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+        services.AddFluentValidationAutoValidation();
+        services.AddValidatorsFromAssemblyContaining<IRequestsValidator>();
         return services;
     }
 }

@@ -8,5 +8,5 @@ namespace Onion.Template.Application.Commom.Interfaces.Authentication;
 
 public interface IAuthenticationService
 {
-    string Register(string firstName, string lastName, string email);
+    string Register(string firstName, string lastName, string password, string email);
 }

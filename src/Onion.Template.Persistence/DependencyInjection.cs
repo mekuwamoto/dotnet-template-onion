@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services, ConfigurationManager config)
     {
+        var connectionString = config.GetConnectionString("ConnectionSqlServer");
+        services.AddDbContext<UserContext>(x => x.UseSqlServer(connectionString));
         return services;
     }
 }

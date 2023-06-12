@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Onion.Template.Persistence
+namespace Onion.Template.Persistence.Contexts
 {
     public class UserContext : DbContext
     {

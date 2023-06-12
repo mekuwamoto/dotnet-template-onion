@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Onion.Template.Domain\Onion.Template.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Settings\" />
-  </ItemGroup>
-
 </Project>

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Onion.Template.Application.Commom.Attributes;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
 using Onion.Template.Application.Commom.Interfaces.Validators;
+using Onion.Template.Application.Commom.Settings;
 using Onion.Template.Application.Services.Authentication;
 using Onion.Template.Application.Users.Requests;
 using Onion.Template.Application.Users.Validations;
@@ -26,6 +27,7 @@ public static class DependencyInjection
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<IRequestsValidator>();
-        return services;
+		services.Configure<HashSettings>(config.GetSection(HashSettings.Section));
+		return services;
     }
 }

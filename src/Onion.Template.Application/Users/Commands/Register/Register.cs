@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Options;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
+using Onion.Template.Application.Commom.Interfaces.Repositories;
 using Onion.Template.Application.Commom.Settings;
 using Onion.Template.Application.Users.Requests;
 using Onion.Template.Application.Users.Response;
@@ -26,12 +27,14 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, RegisterUserResp
 	private readonly IPwdHasher _hasher;
 	private readonly HashSettings _settings;
 	private readonly IMapper _mapper;
+	private readonly IUserRepository _repository;
 
-	public RegisterHandler(IPwdHasher wdHasher, IOptions<HashSettings> settings, IMapper mapper)
+	public RegisterHandler(IPwdHasher wdHasher, IOptions<HashSettings> settings, IMapper mapper, IUserRepository repository)
 	{
 		_hasher = wdHasher;
 		_settings = settings.Value;
 		_mapper = mapper;
+		_repository = repository;
 	}
 
 	public async Task<RegisterUserResponse> Handle(RegisterCommand command, CancellationToken cancellationToken)
@@ -40,6 +43,8 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, RegisterUserResp
 		string hash = _hasher.ComputeHash(command.User.Password, salt, _settings.Pepper, _settings.Iterations);
 
 		User user = new User(command.User.FirstName, command.User.LastName, command.User.Email, command.User.Username, salt, hash);
+
+		await _repository.AddAsync(user);
 
 		RegisterUserResponse userResponse = _mapper.Map<RegisterUserResponse>(user);
 		return userResponse;

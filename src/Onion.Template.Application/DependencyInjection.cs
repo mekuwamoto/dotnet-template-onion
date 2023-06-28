@@ -21,8 +21,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services, ConfigurationManager config)
     {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 		services.Configure<HashSettings>(config.GetSection(HashSettings.Section));
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+		services.AddAutoMapper(Assembly.GetExecutingAssembly());
 		return services;
     }
 }

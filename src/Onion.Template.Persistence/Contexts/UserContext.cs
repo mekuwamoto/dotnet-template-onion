@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Persistence.Contexts;
 
-[Dependency(DI.Scoped)]
+[Injection(DI.Scoped)]
 public class UserContext : DbContext, IUserContext
 {
     public UserContext(DbContextOptions<UserContext> options) : base(options) { }

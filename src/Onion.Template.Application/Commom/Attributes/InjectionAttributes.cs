@@ -2,8 +2,8 @@
 
 namespace Onion.Template.Application.Commom.Attributes;
 
-public class DependencyAttribute : Attribute
+public class InjectionAttribute : Attribute
 {
     public DI Di;
-    public DependencyAttribute(DI di) => Di = di;
+    public InjectionAttribute(DI di) => Di = di;
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Services.Authentication;
 
-[Dependency(DI.Transient)]
+[Injection(DI.Transient)]
 internal class AuthenticationService : IAuthenticationService
 {
     private readonly IJwtTokenGenerator _jwt;

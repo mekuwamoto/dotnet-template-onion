@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Onion.Template.Infrastructure.Authentication;
 
-[Dependency(DI.Scoped)]
+[Injection(DI.Scoped)]
 public class JwtTokenGenerator : IJwtTokenGenerator
 {
     private readonly JwtSettings _settings;

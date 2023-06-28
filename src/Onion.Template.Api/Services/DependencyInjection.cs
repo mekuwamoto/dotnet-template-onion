@@ -30,11 +30,11 @@ public static class DependencyInjection
 
     public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
-        Type dependencyRegistration = typeof(DependencyAttribute);
+        Type dependencyRegistration = typeof(InjectionAttribute);
         List<Type> types = AppDomain.CurrentDomain
             .GetAssemblies()
             .SelectMany(s => s.GetTypes())
-            .Where(p => !p.IsInterface && p.IsDefined(typeof(DependencyAttribute), false))
+            .Where(p => !p.IsInterface && p.IsDefined(typeof(InjectionAttribute), false))
             .ToList();
         types.ForEach(type => RegisterType(services, type));
     }
@@ -43,7 +43,7 @@ public static class DependencyInjection
     {
         Type? @interface = type.GetInterface($"I{type.Name}");
         if (@interface == null) return;
-        DependencyAttribute? dependencyAttribute = type.GetCustomAttribute(typeof(DependencyAttribute), true) as DependencyAttribute;
+        InjectionAttribute? dependencyAttribute = type.GetCustomAttribute(typeof(InjectionAttribute), true) as InjectionAttribute;
         DI? dependencyType = dependencyAttribute?.Di;
         switch (dependencyType)
         {

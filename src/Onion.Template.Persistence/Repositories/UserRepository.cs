@@ -1,4 +1,5 @@
-﻿using Onion.Template.Application.Commom.Attributes;
+﻿using Microsoft.EntityFrameworkCore;
+using Onion.Template.Application.Commom.Attributes;
 using Onion.Template.Application.Commom.Enums;
 using Onion.Template.Application.Commom.Interfaces.Repositories;
 using Onion.Template.Domain.Entities;
@@ -28,23 +29,11 @@ public class UserRepository : IUserRepository
 		await _context.SaveChangesAsync();
 	}
 
-	public Task<string> DeleteAsync(long id)
-	{
-		throw new NotImplementedException();
-	}
+	public async Task<User?> GetUserByEmail(string email)
+		=> await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
 
-	public Task<IReadOnlyList<User>> GetAllAsync()
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task<User> GetByIdAsync(long id)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task<string> UpdateAsync(User entity)
-	{
-		throw new NotImplementedException();
-	}
+	public Task<string> DeleteAsync(Guid id) => throw new NotImplementedException();
+	public Task<IReadOnlyList<User>> GetAllAsync() => throw new NotImplementedException();
+	public Task<User> GetByIdAsync(Guid id) => throw new NotImplementedException();
+	public Task<string> UpdateAsync(User entity) => throw new NotImplementedException();
 }

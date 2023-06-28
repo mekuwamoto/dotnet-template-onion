@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
 using Onion.Template.Application.Commom.Settings;

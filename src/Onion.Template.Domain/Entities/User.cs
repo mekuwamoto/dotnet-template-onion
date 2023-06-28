@@ -25,4 +25,8 @@ public class User
 		PasswordSalt = passwordSalt;
 		PasswordHash = passwordHash;
 	}
+
+	public User()
+	{
+	}
 }

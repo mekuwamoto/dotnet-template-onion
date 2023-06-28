@@ -22,10 +22,16 @@ public class UserMapping : IEntityTypeConfiguration<User>
         builder
             .Property(p => p.Email)
             .HasColumnName("DS_EMAIL");
-        builder
-            .Property(p => p.Password)
-            .HasColumnName("DS_PWD");
-        builder
+		builder
+			.Property(p => p.Username)
+			.HasColumnName("DS_USERNAME");
+		builder
+            .Property(p => p.PasswordSalt)
+            .HasColumnName("DS_PWD_SALT");
+		builder
+			.Property(p => p.PasswordHash)
+			.HasColumnName("DS_PWD_HASH");
+		builder
             .HasIndex(p => p.Email)
             .IsUnique()
             ;

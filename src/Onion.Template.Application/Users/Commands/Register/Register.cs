@@ -39,7 +39,7 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, RegisterUserResp
 
 	public async Task<RegisterUserResponse> Handle(RegisterCommand command, CancellationToken cancellationToken)
 	{
-		if (await UserAlreadyRegistered(command.User.Email))
+		if (await _repository.IsEmailRegistered(command.User.Email))
 			throw new Exception("User already registered");
 
 		string salt = _hasher.GenerateSalt();
@@ -51,11 +51,5 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, RegisterUserResp
 
 		RegisterUserResponse userResponse = _mapper.Map<RegisterUserResponse>(user);
 		return userResponse;
-	}
-
-	private async Task<bool> UserAlreadyRegistered(string email)
-	{
-		User? existingUser = await _repository.GetUserByEmail(email);
-		return existingUser is not null;
 	}
 }

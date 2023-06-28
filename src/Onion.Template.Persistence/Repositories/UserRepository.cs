@@ -32,6 +32,9 @@ public class UserRepository : IUserRepository
 	public async Task<User?> GetUserByEmail(string email)
 		=> await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
 
+	public async Task<bool> IsEmailRegistered(string email)
+		=> await _context.Users.AnyAsync(user => user.Email == email);
+
 	public Task<string> DeleteAsync(Guid id) => throw new NotImplementedException();
 	public Task<IReadOnlyList<User>> GetAllAsync() => throw new NotImplementedException();
 	public Task<User> GetByIdAsync(Guid id) => throw new NotImplementedException();

@@ -14,18 +14,16 @@ namespace Onion.Template.Api.Controllers.User;
 [Route("api/user")]
 public class UserController : BaseController
 {
-    private readonly IMediator _mediator;
+	public UserController(IMediator mediator) : base(mediator)
+	{
 
-    public UserController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+	}
 
-    [HttpPost]
-    public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
-    {
-        var response = await _mediator.Send(new RegisterCommand());
-        return Ok(response);
-    }
-    
+	[HttpPost]
+	public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
+	{
+		var response = await _mediator.Send(new RegisterCommand());
+		return Ok(response);
+	}
+
 }

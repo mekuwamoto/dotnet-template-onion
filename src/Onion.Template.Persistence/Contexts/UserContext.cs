@@ -20,11 +20,6 @@ public class UserContext : DbContext, IUserContext
 
     public DbSet<User> Users { get; set; }
 
-	public async Task SaveChangesAsync()
-	{
-        await SaveChangesAsync();
-	}
-
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

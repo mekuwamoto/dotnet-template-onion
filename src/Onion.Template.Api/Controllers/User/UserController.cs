@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentResults;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -19,17 +20,18 @@ public class UserController : BaseController
 	{
 		var response = await _mediator.Send(new RegisterCommand(request));
 
-		if (response.IsSuccess)
-			return Ok(response.Value);
-
-		var error = response.Errors.First();
-		return Problem(title: error.Message, statusCode: (int)error.Metadata["StatusCode"]);
+		return response.IsSuccess ?
+			Ok(response.Value) :
+			ReturnError(response.Errors.First());
 	}
 
 	[HttpPost("signin")]
 	public async Task<IActionResult> Login([FromBody] LoginRequest request)
 	{
 		var response = await _mediator.Send(new LoginCommand(request));
-		return Ok(response);
+
+		return response.IsSuccess ?
+			Ok(response.Value) :
+			ReturnError(response.Errors.First());
 	}
 }

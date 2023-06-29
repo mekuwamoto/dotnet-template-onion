@@ -12,16 +12,18 @@ namespace Onion.Template.Api.Controllers.User;
 [Route("api/user")]
 public class UserController : BaseController
 {
-	public UserController(IMediator mediator) : base(mediator)
-	{
-
-	}
+	public UserController(IMediator mediator) : base(mediator) { }
 
 	[HttpPost("signup")]
 	public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
 	{
 		var response = await _mediator.Send(new RegisterCommand(request));
-		return Ok(response);
+
+		if (response.IsSuccess)
+			return Ok(response.Value);
+
+		var error = response.Errors.First();
+		return Problem(title: error.Message, statusCode: (int)error.Metadata["StatusCode"]);
 	}
 
 	[HttpPost("signin")]

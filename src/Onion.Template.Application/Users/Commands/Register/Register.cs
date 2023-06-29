@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using FluentResults;
 using MediatR;
 using Microsoft.Extensions.Options;
+using Onion.Template.Application.Commom.Errors;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
 using Onion.Template.Application.Commom.Interfaces.Repositories;
 using Onion.Template.Application.Commom.Settings;
@@ -16,13 +18,13 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Users.Commands.Register;
 
-public struct RegisterCommand : IRequest<RegisterUserResponse>
+public struct RegisterCommand : IRequest<Result<RegisterUserResponse>>
 {
 	public RegisterCommand(RegisterUserRequest user) => User = user;
 	public RegisterUserRequest User { get; set; }
 }
 
-public class RegisterHandler : IRequestHandler<RegisterCommand, RegisterUserResponse>
+public class RegisterHandler : IRequestHandler<RegisterCommand, Result<RegisterUserResponse>>
 {
 	private readonly IPwdHasher _hasher;
 	private readonly HashSettings _settings;
@@ -37,10 +39,10 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, RegisterUserResp
 		_repository = repository;
 	}
 
-	public async Task<RegisterUserResponse> Handle(RegisterCommand command, CancellationToken cancellationToken)
+	public async Task<Result<RegisterUserResponse>> Handle(RegisterCommand command, CancellationToken cancellationToken)
 	{
 		if (await _repository.IsEmailRegistered(command.User.Email))
-			throw new Exception("User already registered");
+			return Result.Fail<RegisterUserResponse>(new DuplicateEmailError());
 
 		string salt = _hasher.GenerateSalt();
 		string hash = _hasher.ComputeHash(command.User.Password, salt, _settings.Pepper, _settings.Iterations);

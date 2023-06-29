@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Onion.Template.Application.Users.Response;
+using Onion.Template.Application.Users.Response.Successful;
 using Onion.Template.Domain.Entities;
 using System;
 using System.Collections.Generic;

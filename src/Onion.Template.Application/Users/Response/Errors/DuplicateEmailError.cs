@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Onion.Template.Application.Commom.Errors;
+namespace Onion.Template.Application.Users.Response.Errors;
 
 public class DuplicateEmailError : IError
 {

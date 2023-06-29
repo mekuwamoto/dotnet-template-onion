@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Onion.Template.Application.Users.Response;
+namespace Onion.Template.Application.Users.Response.Successful;
 
 public class LoginUserResponse
 {

@@ -5,7 +5,7 @@ using Onion.Template.Application.Commom.Interfaces.Authentication;
 using Onion.Template.Application.Commom.Interfaces.Repositories;
 using Onion.Template.Application.Commom.Settings;
 using Onion.Template.Application.Users.Requests;
-using Onion.Template.Application.Users.Response;
+using Onion.Template.Application.Users.Response.Successful;
 using Onion.Template.Domain.Entities;
 using System;
 using System.Collections.Generic;

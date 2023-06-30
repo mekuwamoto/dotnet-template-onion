@@ -3,13 +3,7 @@ using Onion.Template.Application.Commom.Attributes;
 using Onion.Template.Application.Commom.Enums;
 using Onion.Template.Application.Commom.Interfaces.Repositories;
 using Onion.Template.Domain.Entities;
-using Onion.Template.Persistence.Contexts;
 using Onion.Template.Persistence.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Onion.Template.Persistence.Repositories;
 

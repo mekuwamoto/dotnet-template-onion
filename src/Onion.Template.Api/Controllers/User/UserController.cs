@@ -1,9 +1,6 @@
-﻿using FluentResults;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Onion.Template.Api.Controllers.Commom;
 using Onion.Template.Application.Users.Commands.Login;
 using Onion.Template.Application.Users.Commands.Register;

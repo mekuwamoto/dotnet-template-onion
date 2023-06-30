@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Onion.Template.Application.Users.Response.Successful;
+﻿namespace Onion.Template.Application.Users.Response.Successful;
 
 public class UserTokenResponse
 {

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using FluentResults;
+﻿using FluentResults;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Onion.Template.Application.Commom.Interfaces.Authentication;
@@ -9,12 +8,6 @@ using Onion.Template.Application.Users.Requests;
 using Onion.Template.Application.Users.Response.Errors;
 using Onion.Template.Application.Users.Response.Successful;
 using Onion.Template.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Users.Commands.Register;
 

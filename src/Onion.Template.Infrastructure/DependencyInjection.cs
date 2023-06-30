@@ -1,13 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Onion.Template.Application.Commom.Interfaces.Authentication;
-using Onion.Template.Infrastructure.Authentication;
 using Onion.Template.Infrastructure.Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Onion.Template.Infrastructure;
 

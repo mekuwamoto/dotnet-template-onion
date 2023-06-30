@@ -1,8 +1,6 @@
 ﻿using FluentResults;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Onion.Template.Application.Users.Response.Successful;
 
 namespace Onion.Template.Api.Controllers.Commom;
 

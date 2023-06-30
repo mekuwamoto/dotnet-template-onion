@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Onion.Template.Application.Commom.Settings;
+﻿namespace Onion.Template.Application.Commom.Settings;
 
 public class HashSettings
 {

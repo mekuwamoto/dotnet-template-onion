@@ -6,6 +6,7 @@ public static class MiddlewaresConfiguration
     {
         builder.UseExceptionHandler("/error");
         builder.UseHttpsRedirection();
+        builder.UseAuthentication();
         builder.UseAuthorization();
         return builder;
     }

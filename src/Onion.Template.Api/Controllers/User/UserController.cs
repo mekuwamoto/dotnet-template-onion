@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -15,7 +16,7 @@ public class UserController : BaseController
 {
 	public UserController(IMediator mediator) : base(mediator) { }
 
-	[HttpPost("signup")]
+	[HttpPost("signup"), AllowAnonymous]
 	public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
 	{
 		var response = await _mediator.Send(new RegisterCommand(request));
@@ -25,7 +26,7 @@ public class UserController : BaseController
 			ReturnError(response.Errors.First());
 	}
 
-	[HttpPost("signin")]
+	[HttpPost("signin"), AllowAnonymous]
 	public async Task<IActionResult> Login([FromBody] LoginRequest request)
 	{
 		var response = await _mediator.Send(new LoginCommand(request));

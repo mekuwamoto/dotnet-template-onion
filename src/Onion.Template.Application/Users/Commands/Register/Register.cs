@@ -18,31 +18,31 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Users.Commands.Register;
 
-public struct RegisterCommand : IRequest<Result<RegisterUserResponse>>
+public struct RegisterCommand : IRequest<Result<UserTokenResponse>>
 {
 	public RegisterCommand(RegisterUserRequest user) => User = user;
 	public RegisterUserRequest User { get; set; }
 }
 
-public class RegisterHandler : IRequestHandler<RegisterCommand, Result<RegisterUserResponse>>
+public class RegisterHandler : IRequestHandler<RegisterCommand, Result<UserTokenResponse>>
 {
 	private readonly IPwdHasher _hasher;
 	private readonly HashSettings _settings;
-	private readonly IMapper _mapper;
 	private readonly IUserRepository _repository;
+	private readonly IJwtTokenGenerator _jwt;
 
-	public RegisterHandler(IPwdHasher wdHasher, IOptions<HashSettings> settings, IMapper mapper, IUserRepository repository)
+	public RegisterHandler(IPwdHasher wdHasher, IOptions<HashSettings> settings, IUserRepository repository, IJwtTokenGenerator jwt)
 	{
 		_hasher = wdHasher;
 		_settings = settings.Value;
-		_mapper = mapper;
 		_repository = repository;
+		_jwt = jwt;
 	}
 
-	public async Task<Result<RegisterUserResponse>> Handle(RegisterCommand command, CancellationToken cancellationToken)
+	public async Task<Result<UserTokenResponse>> Handle(RegisterCommand command, CancellationToken cancellationToken)
 	{
 		if (await _repository.IsEmailRegistered(command.User.Email))
-			return Result.Fail<RegisterUserResponse>(new DuplicateEmailError());
+			return Result.Fail<UserTokenResponse>(new DuplicateEmailError());
 
 		string salt = _hasher.GenerateSalt();
 		string hash = _hasher.ComputeHash(command.User.Password, salt, _settings.Pepper, _settings.Iterations);
@@ -51,7 +51,7 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, Result<RegisterU
 
 		await _repository.AddAsync(user);
 
-		RegisterUserResponse userResponse = _mapper.Map<RegisterUserResponse>(user);
-		return userResponse;
+		UserTokenResponse token = _jwt.GenerateToken(user.Id, user.FirstName, user.LastName, user.Email);
+		return token;
 	}
 }

@@ -13,7 +13,5 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<User, RegisterUserResponse>();
-		CreateMap<User, LoginUserResponse>();
 	}
 }

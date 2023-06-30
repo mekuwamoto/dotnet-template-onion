@@ -15,7 +15,6 @@ public struct LoginCommand : IRequest<Result<UserTokenResponse>>
 {
 	public LoginRequest User { get; set; }
 	public LoginCommand(LoginRequest user) => User = user;
-
 }
 
 public class LoginHandler : IRequestHandler<LoginCommand, Result<UserTokenResponse>>

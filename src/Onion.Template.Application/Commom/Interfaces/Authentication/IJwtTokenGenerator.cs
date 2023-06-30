@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Onion.Template.Application.Users.Response.Successful;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,5 @@ namespace Onion.Template.Application.Commom.Interfaces.Authentication;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(Guid userId, string firstName, string lastName);
+	UserTokenResponse GenerateToken(Guid userId, string firstName, string lastName, string email);
 }

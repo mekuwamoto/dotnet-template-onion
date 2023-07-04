@@ -39,11 +39,11 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 	{
 		return new[]
 		{
-			new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
-			new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-			new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
+			new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+			new Claim(ClaimTypes.GivenName, firstName),
+			new Claim(ClaimTypes.Surname, lastName),
 			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-			new Claim(JwtRegisteredClaimNames.Email, email)
+			new Claim(ClaimTypes.Email, email)
 		};
 	}
 }

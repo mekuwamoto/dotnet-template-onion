@@ -19,6 +19,7 @@ public static class DependencyInjection
 		services.AddInfrastructure(config);
 		services.AddApiServices(config);
 		services.RegisterServices(config);
+		services.AddHttpContextAccessor();
 		return services;
 	}
 

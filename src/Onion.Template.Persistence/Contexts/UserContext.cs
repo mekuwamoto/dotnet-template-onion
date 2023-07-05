@@ -10,17 +10,18 @@ namespace Onion.Template.Persistence.Contexts;
 [Injection(DI.Scoped)]
 public class UserContext : DbContext, IUserContext
 {
-    public UserContext(DbContextOptions<UserContext> options) : base(options) { }
+	public UserContext(DbContextOptions<UserContext> options) : base(options) { }
 
-    public DbSet<User> Users { get; set; }
+	public DbSet<User> Users { get; set; }
+	public DbSet<Todo> Todos { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    }
+	{
+		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+	}
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        return await base.SaveChangesAsync(cancellationToken);
-    }
+	public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+	{
+		return await base.SaveChangesAsync(cancellationToken);
+	}
 }

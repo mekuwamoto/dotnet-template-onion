@@ -22,6 +22,11 @@ public class TodoRepository : ITodoRepository
 		return todo;
 	}
 
+	public async Task<IReadOnlyList<Todo>> GetAllTodosFromUser(Guid idUser)
+		=> await _context.Todos.AsNoTracking()
+			.Where(td => td.UserId == idUser)
+			.ToListAsync();
+
 	public Task DeleteAsync(Guid id)
 	{
 		throw new NotImplementedException();
@@ -31,6 +36,7 @@ public class TodoRepository : ITodoRepository
 	{
 		throw new NotImplementedException();
 	}
+
 
 	public Task<Todo> GetByIdAsync(Guid id)
 	{

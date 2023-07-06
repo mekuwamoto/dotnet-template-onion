@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Onion.Template.Api.Controllers.Commom;
 using Onion.Template.Application.Todos.Commands.CreateTodo;
+using Onion.Template.Application.Todos.Queries.GetTodos;
 using Onion.Template.Application.Todos.Requests;
 
 namespace Onion.Template.Api.Controllers.Todos;
@@ -19,4 +20,12 @@ public class TodoController : BaseController
 		var response = await _mediator.Send(new CreateTodoCommand(dto));
 		return Ok(response);
 	}
+
+	[HttpGet]
+	public async Task<IActionResult> GetTodos()
+	{
+		var response = await _mediator.Send(new GetTodosQuery());
+		return Ok(response);
+	}
+
 }

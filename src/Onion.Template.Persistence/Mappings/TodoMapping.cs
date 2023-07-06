@@ -27,5 +27,8 @@ public class TodoMapping : IEntityTypeConfiguration<Todo>
 		builder
 			.Property(p => p.Completed)
 			.HasColumnName("FL_COMPLETED");
+		builder.HasOne(t => t.User)
+			.WithMany(u => u.TodoList)
+			.HasForeignKey(t => t.UserId);
 	}
 }

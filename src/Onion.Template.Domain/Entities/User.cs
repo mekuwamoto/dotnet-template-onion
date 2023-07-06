@@ -8,7 +8,7 @@ public class User : BaseEntity
 	public string Username { get; private set; } = null!;
 	public string PasswordSalt { get; private set; } = null!;
 	public string PasswordHash { get; private set; } = null!;
-	public List<Todo> TodoList { get; private set; }
+	public List<Todo> TodoList { get; private set; } = new();
 
 	public User(string firstName, string lastName, string email, string username, string passwordSalt, string passwordHash)
 	{

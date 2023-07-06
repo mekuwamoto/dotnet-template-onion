@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Onion.Template.Api.Controllers.Commom;
 using Onion.Template.Application.Todos.Commands.CreateTodo;
+using Onion.Template.Application.Todos.Queries.GetSingleTodo;
 using Onion.Template.Application.Todos.Queries.GetTodos;
 using Onion.Template.Application.Todos.Requests;
 
@@ -26,6 +27,16 @@ public class TodoController : BaseController
 	{
 		var response = await _mediator.Send(new GetTodosQuery());
 		return Ok(response);
+	}
+
+	[HttpGet("{todoId}")]
+	public async Task<IActionResult> GetTodoById(Guid todoId)
+	{
+		var response = await _mediator.Send(new GetSingleTodoQuery(todoId));
+
+		return response.IsSuccess ? 
+			Ok(response) : 
+			ReturnError(response.Errors.First());
 	}
 
 }

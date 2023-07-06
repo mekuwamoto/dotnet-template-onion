@@ -27,24 +27,12 @@ public class TodoRepository : ITodoRepository
 			.Where(td => td.UserId == idUser)
 			.ToListAsync();
 
-	public Task DeleteAsync(Guid id)
-	{
-		throw new NotImplementedException();
-	}
+	public async Task<Todo?> GetTodoFromUser(Guid idUser, Guid todoId)
+		=> await _context.Todos.FirstOrDefaultAsync(td => td.Id == todoId && td.UserId == idUser);
 
-	public Task<IReadOnlyList<Todo>> GetAllAsync()
-	{
-		throw new NotImplementedException();
-	}
+	public Task DeleteAsync(Guid id) => throw new NotImplementedException();
+	public Task<IReadOnlyList<Todo>> GetAllAsync() => throw new NotImplementedException();
+	public Task<Todo> GetByIdAsync(Guid id) => throw new NotImplementedException();
+	public Task<Todo> UpdateAsync(Todo entity) => throw new NotImplementedException();
 
-
-	public Task<Todo> GetByIdAsync(Guid id)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task<Todo> UpdateAsync(Todo entity)
-	{
-		throw new NotImplementedException();
-	}
 }

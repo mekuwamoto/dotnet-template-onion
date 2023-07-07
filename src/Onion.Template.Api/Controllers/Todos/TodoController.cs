@@ -19,7 +19,7 @@ public class TodoController : BaseController
 	public async Task<IActionResult> CreateTodoItem([FromBody] CreateTodoRequest dto)
 	{
 		var response = await _mediator.Send(new CreateTodoCommand(dto));
-		return Ok(response);
+		return Created($"{Request.Scheme}://{Request.Host.ToUriComponent()}{Request.Path.ToString()}/{response.TodoId}", response);
 	}
 
 	[HttpGet]
@@ -34,9 +34,16 @@ public class TodoController : BaseController
 	{
 		var response = await _mediator.Send(new GetSingleTodoQuery(todoId));
 
-		return response.IsSuccess ? 
-			Ok(response) : 
+		return response.IsSuccess ?
+			Ok(response) :
 			ReturnError(response.Errors.First());
+	}
+
+	[HttpPost("complete/{todoId}")]
+	public async Task<IActionResult> CompleteTodoItem(Guid todoId)
+	{
+
+		return Ok();
 	}
 
 }

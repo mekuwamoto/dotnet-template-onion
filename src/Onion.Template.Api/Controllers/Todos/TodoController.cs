@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Onion.Template.Api.Controllers.Commom;
 using Onion.Template.Application.Todos.Commands.CompleteTodoItem;
 using Onion.Template.Application.Todos.Commands.CreateTodo;
+using Onion.Template.Application.Todos.Commands.DeleteTodo;
 using Onion.Template.Application.Todos.Commands.RenameTodoTitle;
 using Onion.Template.Application.Todos.Queries.GetSingleTodo;
 using Onion.Template.Application.Todos.Queries.GetTodos;
@@ -55,8 +56,19 @@ public class TodoController : BaseController
 	public async Task<IActionResult> RenameTodoTitle(Guid todoId, [FromBody] EditTodoRequest request)
 	{
 		var response = await _mediator.Send(new RenameTodoTitleCommand(todoId, request));
+
 		return response.IsSuccess ?
 			Ok(response.Value) :
+			ReturnError(response.Errors.First());
+	}
+
+	[HttpDelete("{todoId}")]
+	public async Task<IActionResult> DeleteTodo(Guid todoId)
+	{
+		var response = await _mediator.Send(new DeleteTodoCommand(todoId));
+
+		return response.IsSuccess ?
+			NoContent() :
 			ReturnError(response.Errors.First());
 	}
 }

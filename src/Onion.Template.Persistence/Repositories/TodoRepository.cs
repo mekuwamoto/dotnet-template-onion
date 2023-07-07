@@ -37,7 +37,12 @@ public class TodoRepository : ITodoRepository
 	public async Task<Todo?> GetTodoFromUser(Guid idUser, Guid todoId)
 		=> await _context.Todos.FirstOrDefaultAsync(td => td.Id == todoId && td.UserId == idUser);
 
-	public Task DeleteAsync(Guid id) => throw new NotImplementedException();
+	public async Task DeleteAsync(Todo entity)
+	{
+		_context.Todos.Remove(entity);
+		await _context.SaveChangesAsync();
+	}
+
 	public Task<IReadOnlyList<Todo>> GetAllAsync() => throw new NotImplementedException();
 	public Task<Todo> GetByIdAsync(Guid id) => throw new NotImplementedException();
 

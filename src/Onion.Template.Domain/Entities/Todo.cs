@@ -24,4 +24,9 @@ public class Todo : BaseEntity
 	{
 		Completed = true;
 	}
+
+	public void RenameTitle(string newTitle)
+	{
+		Title = newTitle;
+	}
 }

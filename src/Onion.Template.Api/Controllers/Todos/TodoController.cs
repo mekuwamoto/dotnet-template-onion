@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Onion.Template.Api.Controllers.Commom;
 using Onion.Template.Application.Todos.Commands.CompleteTodoItem;
 using Onion.Template.Application.Todos.Commands.CreateTodo;
+using Onion.Template.Application.Todos.Commands.RenameTodoTitle;
 using Onion.Template.Application.Todos.Queries.GetSingleTodo;
 using Onion.Template.Application.Todos.Queries.GetTodos;
 using Onion.Template.Application.Todos.Requests;
@@ -50,4 +51,12 @@ public class TodoController : BaseController
 			ReturnError(response.Errors.First());
 	}
 
+	[HttpPatch("{todoId}")]
+	public async Task<IActionResult> RenameTodoTitle(Guid todoId, [FromBody] EditTodoRequest request)
+	{
+		var response = await _mediator.Send(new RenameTodoTitleCommand(todoId, request));
+		return response.IsSuccess ?
+			Ok(response.Value) :
+			ReturnError(response.Errors.First());
+	}
 }

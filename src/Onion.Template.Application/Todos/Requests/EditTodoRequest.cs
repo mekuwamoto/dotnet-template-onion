@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Onion.Template.Application.Todos.Requests;
 
-public class CreateTodoRequest
+public class EditTodoRequest
 {
-	[Required] 
+	[Required]
 	public string Title { get; set; } = null!;
 }

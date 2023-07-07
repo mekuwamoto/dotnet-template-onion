@@ -22,6 +22,13 @@ public class TodoRepository : ITodoRepository
 		return todo;
 	}
 
+	public async Task<Todo> UpdateAsync(Todo todo)
+	{
+		_context.Todos.Update(todo);
+		await _context.SaveChangesAsync();
+		return todo;
+	}
+
 	public async Task<IReadOnlyList<Todo>> GetAllTodosFromUser(Guid idUser)
 		=> await _context.Todos.AsNoTracking()
 			.Where(td => td.UserId == idUser)
@@ -33,6 +40,5 @@ public class TodoRepository : ITodoRepository
 	public Task DeleteAsync(Guid id) => throw new NotImplementedException();
 	public Task<IReadOnlyList<Todo>> GetAllAsync() => throw new NotImplementedException();
 	public Task<Todo> GetByIdAsync(Guid id) => throw new NotImplementedException();
-	public Task<Todo> UpdateAsync(Todo entity) => throw new NotImplementedException();
 
 }

@@ -16,7 +16,12 @@ public class Todo : BaseEntity
 
 	public Guid UserId { get; set; }
 	public string Title { get; set; } = null!;
-	public bool Completed { get; set; } = false;
+	public bool Completed { get; private set; } = false;
 
 	public User User { get; set; } = null!;
+
+	public void CompleteTask()
+	{
+		Completed = true;
+	}
 }

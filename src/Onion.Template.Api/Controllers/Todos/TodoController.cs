@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Onion.Template.Api.Controllers.Commom;
+using Onion.Template.Application.Todos.Commands.CompleteTodoItem;
 using Onion.Template.Application.Todos.Commands.CreateTodo;
 using Onion.Template.Application.Todos.Queries.GetSingleTodo;
 using Onion.Template.Application.Todos.Queries.GetTodos;
@@ -35,15 +36,18 @@ public class TodoController : BaseController
 		var response = await _mediator.Send(new GetSingleTodoQuery(todoId));
 
 		return response.IsSuccess ?
-			Ok(response) :
+			Ok(response.Value) :
 			ReturnError(response.Errors.First());
 	}
 
 	[HttpPost("complete/{todoId}")]
 	public async Task<IActionResult> CompleteTodoItem(Guid todoId)
 	{
+		var response = await _mediator.Send(new CompleteTodoItemCommand(todoId));
 
-		return Ok();
+		return response.IsSuccess ?
+			Ok(response.Value) :
+			ReturnError(response.Errors.First());
 	}
 
 }

@@ -42,9 +42,9 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, Result<UserToken
 
 		User user = new User(command.User.FirstName, command.User.LastName, command.User.Email, command.User.Username, salt, hash);
 
-		await _repository.AddAsync(user);
+		User createdUser = await _repository.AddAsync(user);
 
-		UserTokenResponse token = _jwt.GenerateToken(user.Id, user.FirstName, user.LastName, user.Email);
+		UserTokenResponse token = _jwt.GenerateToken(createdUser.Id, createdUser.FirstName, createdUser.LastName, createdUser.Email);
 		return token;
 	}
 }

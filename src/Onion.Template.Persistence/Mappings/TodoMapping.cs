@@ -29,10 +29,12 @@ public class TodoMapping : IEntityTypeConfiguration<Todo>
 			.HasColumnName("FL_COMPLETED");
 		builder
 			.Property(p => p.DtIncluded)
-			.HasColumnName("DT_INCLUDED");
+			.HasColumnName("DT_INCLUDED")
+			.HasDefaultValueSql("getdate()");
 		builder
 			.Property(p => p.DtLastModified)
-			.HasColumnName("DT_LAST_MODIFIED");
+			.HasColumnName("DT_LAST_MODIFIED")
+			.HasDefaultValueSql("getdate()");
 		builder
 			.Property(p => p.DtExluded)
 			.HasColumnName("DT_EXCLUDED");

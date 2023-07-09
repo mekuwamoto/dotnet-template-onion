@@ -26,10 +26,12 @@ public class Todo : BaseEntity
 	public void CompleteTask()
 	{
 		Completed = true;
+		DtLastModified = DateTime.UtcNow;
 	}
 
 	public void RenameTitle(string newTitle)
 	{
 		Title = newTitle;
+		DtLastModified = DateTime.UtcNow;
 	}
 }

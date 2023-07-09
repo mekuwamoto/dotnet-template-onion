@@ -40,7 +40,8 @@ public class TodoMapping : IEntityTypeConfiguration<Todo>
 			.HasColumnName("DT_EXCLUDED");
 		builder.HasOne(t => t.User)
 			.WithMany(u => u.TodoList)
-			.HasForeignKey(t => t.UserId);
+			.HasForeignKey(t => t.UserId)
+			.OnDelete(DeleteBehavior.Restrict);
 
 		builder.HasQueryFilter(p => p.DtExluded == null);	
 	}

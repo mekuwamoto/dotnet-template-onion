@@ -20,15 +20,26 @@ public class TodoMapping : IEntityTypeConfiguration<Todo>
 			.HasColumnName("ID_TODO");
 		builder
 			.Property(p => p.UserId)
-			.HasColumnName("ID_USEER");
+			.HasColumnName("ID_USER");
 		builder
 			.Property(p => p.Title)
 			.HasColumnName("DS_TITLE");
 		builder
 			.Property(p => p.Completed)
 			.HasColumnName("FL_COMPLETED");
+		builder
+			.Property(p => p.DtIncluded)
+			.HasColumnName("DT_INCLUDED");
+		builder
+			.Property(p => p.DtLastModified)
+			.HasColumnName("DT_LAST_MODIFIED");
+		builder
+			.Property(p => p.DtExluded)
+			.HasColumnName("DT_EXCLUDED");
 		builder.HasOne(t => t.User)
 			.WithMany(u => u.TodoList)
 			.HasForeignKey(t => t.UserId);
+
+		builder.HasQueryFilter(p => p.DtExluded == null);	
 	}
 }

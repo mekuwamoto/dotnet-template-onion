@@ -17,6 +17,9 @@ public class Todo : BaseEntity
 	public Guid UserId { get; set; }
 	public string Title { get; set; } = null!;
 	public bool Completed { get; private set; } = false;
+	public DateTime DtIncluded { get; private set; } = DateTime.UtcNow;
+	public DateTime DtLastModified { get; private set; } = DateTime.UtcNow;
+	public DateTime? DtExluded { get; private set; } = null;
 
 	public User User { get; set; } = null!;
 

@@ -19,8 +19,4 @@ public class User : BaseEntity
 		PasswordSalt = passwordSalt;
 		PasswordHash = passwordHash;
 	}
-
-	public User()
-	{
-	}
 }

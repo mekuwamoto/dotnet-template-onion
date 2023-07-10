@@ -36,13 +36,13 @@ public class TodoMapping : IEntityTypeConfiguration<Todo>
 			.HasColumnName("DT_LAST_MODIFIED")
 			.HasDefaultValueSql("getdate()");
 		builder
-			.Property(p => p.DtExluded)
+			.Property(p => p.DtExcluded)
 			.HasColumnName("DT_EXCLUDED");
 		builder.HasOne(t => t.User)
 			.WithMany(u => u.TodoList)
 			.HasForeignKey(t => t.UserId)
 			.OnDelete(DeleteBehavior.Restrict);
 
-		builder.HasQueryFilter(p => p.DtExluded == null);	
+		builder.HasQueryFilter(p => p.DtExcluded == null);	
 	}
 }

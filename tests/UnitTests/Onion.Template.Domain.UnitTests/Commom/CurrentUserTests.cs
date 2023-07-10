@@ -1,15 +1,6 @@
-﻿using FluentAssertions;
-using FluentAssertions.Common;
-using FluentAssertions.Extensions;
-using Onion.Template.Domain.Commom;
-using Onion.Template.Domain.Entities;
-using System;
-using System.Collections.Generic;
+﻿using FluentAssertions.Common;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Onion.Template.Domain.UnitTests.Commom;
 

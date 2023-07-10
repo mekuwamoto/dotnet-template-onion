@@ -1,12 +1,4 @@
-﻿using FluentAssertions;
-using Onion.Template.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Onion.Template.Domain.UnitTests.Entities;
+﻿namespace Onion.Template.Domain.UnitTests.Entities;
 
 public class UserTests
 {

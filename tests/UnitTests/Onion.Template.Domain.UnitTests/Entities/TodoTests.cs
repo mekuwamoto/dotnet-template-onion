@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
-using FluentAssertions.Extensions;
-using Onion.Template.Domain.Entities;
-
-namespace Onion.Template.Domain.UnitTests.Entities;
+﻿namespace Onion.Template.Domain.UnitTests.Entities;
 
 public class TodoTests
 {
@@ -78,5 +69,4 @@ public class TodoTests
 		todo.DtLastModified.Should().BeAfter(todo.DtIncluded);
 		todo.DtLastModified.Should().BeCloseTo(now, 1.Seconds());
 	}
-
 }

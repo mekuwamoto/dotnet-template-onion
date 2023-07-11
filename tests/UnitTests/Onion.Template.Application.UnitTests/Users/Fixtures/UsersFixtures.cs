@@ -1,8 +1,11 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Onion.Template.Application.Commom.Settings;
+using Onion.Template.Application.Users.Commands.Register;
 using Onion.Template.Application.Users.Requests;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,4 +45,17 @@ public static class UsersFixtures
 			"cZdnYHY79cCBQzPoSvYChUMcU8iGUYh6rC2C1/PbdWk="
 		);
 	}
+
+	public static RegisterUserRequest GetRegisterRequest()
+	{
+		return new RegisterUserRequest()
+		{
+			FirstName = "firstName",
+			LastName = "lastName",
+			Email = "firstName.lastName@email.com",
+			Username = "first",
+			Password = "password123",
+		};
+	}
+
 }

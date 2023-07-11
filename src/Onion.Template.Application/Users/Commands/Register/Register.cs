@@ -24,9 +24,9 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, Result<UserToken
 	private readonly IUserRepository _repository;
 	private readonly IJwtTokenGenerator _jwt;
 
-	public RegisterHandler(IPwdHasher wdHasher, IOptions<HashSettings> settings, IUserRepository repository, IJwtTokenGenerator jwt)
+	public RegisterHandler(IPwdHasher pwdHasher, IOptions<HashSettings> settings, IUserRepository repository, IJwtTokenGenerator jwt)
 	{
-		_hasher = wdHasher;
+		_hasher = pwdHasher;
 		_settings = settings.Value;
 		_repository = repository;
 		_jwt = jwt;

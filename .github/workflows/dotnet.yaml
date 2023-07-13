@@ -20,12 +20,12 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ./src/
+        working-directory: ./
 
       - name: Build project
         run: dotnet build
-        working-directory: ./src/
+        working-directory: ./
 
       - name: Run tests
         run: dotnet test
-        working-directory: ./src/
+        working-directory: ./

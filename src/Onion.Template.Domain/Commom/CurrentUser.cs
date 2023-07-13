@@ -44,4 +44,14 @@ public class CurrentUser
 			}
 		}
 	}
+
+	public CurrentUser(Guid userId, string firstName, string lastName, Guid jti, string email, DateTime tokenExpiration)
+	{
+		UserId = userId;
+		FirstName = firstName;
+		LastName = lastName;
+		Jti = jti;
+		Email = email;
+		TokenExpiration = tokenExpiration;
+	}
 }

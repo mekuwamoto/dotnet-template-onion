@@ -29,8 +29,9 @@ public class CreateTodoHandler : IRequestHandler<CreateTodoCommand, TodoResponse
 
 	public async Task<TodoResponse> Handle(CreateTodoCommand command, CancellationToken cancellationToken)
 	{
-		Todo todo = new(command.Request.Title, _accessor.UserId);
+		Todo todo = new Todo(command.Request.Title, _accessor.UserId);
 		Todo createdTodo = await _repository.AddAsync(todo);
-		return _mapper.Map<Todo, TodoResponse>(createdTodo);
+		var response = _mapper.Map<Todo, TodoResponse>(createdTodo);
+		return response;
 	}
 }

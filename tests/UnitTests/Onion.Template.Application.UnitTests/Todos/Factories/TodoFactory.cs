@@ -1,5 +1,6 @@
 ﻿using Onion.Template.Application.Todos.Commands.CreateTodo;
 using Onion.Template.Application.Todos.Commands.DeleteTodo;
+using Onion.Template.Application.Todos.Commands.RenameTodoTitle;
 using Onion.Template.Application.Todos.Requests;
 using Onion.Template.Application.Todos.Response;
 using System;
@@ -52,5 +53,15 @@ public static class TodoFactory
 	public static DeleteTodoCommand DeleteTodoCommand()
 	{
 		return new DeleteTodoCommand(Guid.NewGuid());
+	}
+
+	public static EditTodoRequest CreateEditTodoRequest()
+	{
+		return new EditTodoRequest() { Title = "New Task Todo" };
+	}
+
+	public static RenameTodoTitleCommand CreateRenameTodoTitleCommand()
+	{
+		return new RenameTodoTitleCommand(Guid.NewGuid(), CreateEditTodoRequest());
 	}
 }

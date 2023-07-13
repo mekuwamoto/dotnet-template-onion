@@ -29,13 +29,13 @@ public class RenameTodoTitleHandler : IRequestHandler<RenameTodoTitleCommand, Re
 {
 	private readonly ITodoRepository _repository;
 	private readonly IUserAccessor _userAccessor;
-	private readonly IMapper _mapperr;
+	private readonly IMapper _mapper;
 
 	public RenameTodoTitleHandler(ITodoRepository repository, IUserAccessor userAccessor, IMapper mapperr)
 	{
 		_repository = repository;
 		_userAccessor = userAccessor;
-		_mapperr = mapperr;
+		_mapper = mapperr;
 	}
 
 	public async Task<Result<TodoResponse>> Handle(RenameTodoTitleCommand command, CancellationToken cancellationToken)
@@ -45,6 +45,6 @@ public class RenameTodoTitleHandler : IRequestHandler<RenameTodoTitleCommand, Re
 			return Result.Fail<TodoResponse>(new NotFoundTodoError());
 		todo.RenameTitle(command.Request.Title);
 		await _repository.UpdateAsync(todo);
-		return _mapperr.Map<Todo?, TodoResponse>(todo);
+		return _mapper.Map<Todo?, TodoResponse>(todo);
 	}
 }
